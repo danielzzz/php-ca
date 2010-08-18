@@ -33,15 +33,21 @@ $serverKeyPath = './server_keys/ca.key';
 // output directory - it should be writtable - don't forget a trailing slash
 $outputDir = "./";
 
+
+//--------------------------------------------------------------------
+// you should not need to modify anything below this line
+//--------------------------------------------------------------------
+$tmpDir = $outputDir.$networkName.'-'.$commonName;
+
 $filesToCompress = array();
 
 //prepare tar.gzip archive
 $outputFile = './'.$networkName.'-'.$commonName.'.tar.gz';
 $archive = new gzip_file($outputFile);
-$archive->set_options(array('basedir' => "./", 'overwrite' => 1, 'level' => 2));
+$archive->set_options(array('basedir' => $outputDir, 'storepaths'=>0, 'overwrite' => 1, 'level' => 2));
 
-//$tmpDir = '/tmp/openvpn-'.time();
-$tmpDir = $outputDir.$networkName.'-'.$commonName;
+
+
 
 $dn = array(
     "countryName" => 'ES', 
