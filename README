@@ -23,3 +23,4 @@ php php-ca.php
 
 once the files are created you can copy them to your openvpn directory and then restart openvpn
 
+if you want to use it vía http it would be probably a good idea to add some password so not everybody can connect to your vpn...
