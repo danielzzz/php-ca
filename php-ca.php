@@ -26,6 +26,13 @@ $networkName = 'testvpn';
 $openVPNServer = 'your.remote.openvpn.server.com';
 $openVPNPort = 1194;
 
+// server key and cert
+$serverCertPath = "./server_keys/ca.crt";
+$serverKeyPath = './server_keys/ca.key';
+
+// output directory - it should be writtable - don't forget a trailing slash
+$outputDir = "./";
+
 $filesToCompress = array();
 
 //prepare tar.gzip archive
@@ -34,7 +41,7 @@ $archive = new gzip_file($outputFile);
 $archive->set_options(array('basedir' => "./", 'overwrite' => 1, 'level' => 2));
 
 //$tmpDir = '/tmp/openvpn-'.time();
-$tmpDir = $networkName.'-'.$commonName;
+$tmpDir = $outputDir.$networkName.'-'.$commonName;
 
 $dn = array(
     "countryName" => 'ES', 
@@ -50,14 +57,14 @@ $privkeypass = null;
 $numberofdays = 3650;
 
 //load previously generated server private key
-$fp=fopen("./server_keys/ca.key","r");
+$fp=fopen($serverKeyPath,"r");
 $caData = fread($fp,8192);
 fclose($fp);
 // $passphrase is required if your key is encoded (suggested)
 $caKey = openssl_get_privatekey($caData);
 
 //load previously generated server cartificate
-$fp=fopen("./server_keys/ca.crt","r");
+$fp=fopen($serverCertPath,"r");
 $caCrt = fread($fp,8192);
 fclose($fp);
 
