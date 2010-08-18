@@ -111,7 +111,7 @@ nobind
 
 persist-key
 persist-tun
-ca /etc/openvpn/ca.crt
+ca /etc/openvpn/$networkName.crt
 cert /etc/openvpn/$commonName.crt
 key /etc/openvpn/{$commonName}.key
 
