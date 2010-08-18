@@ -1,0 +1,25 @@
+PHP-CA
+
+This script makes creation of new openvpn users easier.
+It autogenerates keys and configuration files.
+
+It creates a directory with all keys and config files and a tar.gz file for easy copying to your client machine.
+
+INSTALLATION:
+copy your server's ca.key and ca.crt files to server_keys directory
+
+CONFIGURATION:
+edit php-ca.php file especially set variables:
+$commonName - this is the common name of you new user
+$networkName - the openvpn config file will be generated with this name
+$openVPNServer - the server that hosts your openvnp network
+$openVPNPort - the port used by openvpn
+
+
+make sure you have writting permissions in the directory where the script is executed.
+
+USAGE:
+php php-ca.php
+
+once the files are created you can copy them to your openvpn directory and then restart openvpn
+
